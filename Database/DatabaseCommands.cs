@@ -14,7 +14,7 @@ namespace Loqr.Database
         {
             if (!File.Exists(connection_string))
             {
-                string[] base_columns = { "id" };
+                string[] base_columns = { "id INT PRIMARY KEY NOT NULL" };
                 SQLiteConnection.CreateFile(connection_string);
                 Execute(QueryStrings.CreateDB("base_db", base_columns));
             }
@@ -30,14 +30,25 @@ namespace Loqr.Database
             return sqlite_conn;
         }
 
-        public static void Execute(string statement)
+        public static string Execute(string statement)
         {
-            using (SQLiteConnection sqlite_conn = CreateConnection(root_db))
+            try
             {
-                SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
-                sqlite_cmd.CommandText = statement;
-                sqlite_cmd.ExecuteNonQuery();
+                using (SQLiteConnection sqlite_conn = CreateConnection(root_db))
+                {
+                    SQLiteCommand sqlite_cmd = sqlite_conn.CreateCommand();
+                    sqlite_cmd.CommandText = statement;
+                    sqlite_cmd.ExecuteNonQuery();
+                }
             }
+            catch(SQLiteException ex)
+            {
+                if(ex.ErrorCode == 19)
+                {
+                    return "Unique constraint failed";
+                }
+            }
+            return "Success";
         }
 
         public static DataTable MassRead(string statement)

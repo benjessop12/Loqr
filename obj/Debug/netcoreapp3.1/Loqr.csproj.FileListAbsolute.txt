@@ -1,7 +1,6 @@
 /Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/appsettings.json
 /Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
-/Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/Loqr
 /Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/Loqr.deps.json
 /Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/Loqr.runtimeconfig.json
 /Users/Jessop/Projects/open_api/open_api/bin/Debug/netcoreapp3.1/Loqr.runtimeconfig.dev.json
@@ -134,3 +133,5 @@
 /Users/Jessop/Projects/open_api/open_api/obj/Debug/netcoreapp3.1/Loqr.dll
 /Users/Jessop/Projects/open_api/open_api/obj/Debug/netcoreapp3.1/Loqr.pdb
 /Users/Jessop/Projects/open_api/open_api/obj/Debug/netcoreapp3.1/Loqr.csprojAssemblyReference.cache
+/Users/Jessop/Projects/open_api/open_api/obj/Debug/netcoreapp3.1/Loqr.csproj.CoreCompileInputs.cache
+/Users/Jessop/Projects/open_api/open_api/obj/Debug/netcoreapp3.1/Loqr.genruntimeconfig.cache

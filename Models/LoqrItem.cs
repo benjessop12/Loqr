@@ -4,17 +4,20 @@ namespace Loqr
 {
     public class LoqrItem
     {
-        public LoqrItem(string name, string value, Type type)
+        public LoqrItem(long id,  string name, string value, Type type)
         {
-            this.FieldName = name;
-            this.FieldValue = value;
-            this.FieldType = type;
+            this.Id = id;
+            this.Key = name;
+            this.Value = value;
+            this.Type = type;
         }
 
-        public string FieldName;
+        public long Id;
 
-        public string FieldValue;
+        public string Key;
 
-        public Type FieldType;
+        public string Value;
+
+        public Type Type;
     }
 }

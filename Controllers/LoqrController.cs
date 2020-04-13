@@ -86,28 +86,28 @@ namespace Loqr.Controllers
         {
             await semaphoreSlim.WaitAsync();
 
-            LoqrControllerHelper.EditProcessor(id, payload);
+            string result = LoqrControllerHelper.EditProcessor(id, payload);
 
             semaphoreSlim.Release();
 
-            return Content(LoqrControllerHelper.ReturnResults(id), "application/json");
+            return Content(result, "application/json");
         }
 
         // POST : api/Loqr/delete/{id}
         [HttpDelete]
         [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [Route("delete/{id}")]
+        [Route("delete/{id}/{payload}")]
         [AcceptVerbs("POST", "GET")]
-        public async Task<IActionResult> DeleteLoqrItem([FromRoute]string id)
+        public async Task<IActionResult> DeleteLoqrItem([FromRoute]string id, string payload)
         {
             await semaphoreSlim.WaitAsync();
 
-            LoqrControllerHelper.DeleteProcessor(id);
+            string result = LoqrControllerHelper.DeleteProcessor(id, payload);
 
             semaphoreSlim.Release();
 
-            return Content(LoqrControllerHelper.MassReturnResults(), "application/json");
+            return Content(result, "application/json");
         }
 
         // GET : api/Loqr/db_config
@@ -135,11 +135,11 @@ namespace Loqr.Controllers
         {
             await semaphoreSlim.WaitAsync();
 
-            LoqrControllerHelper.AlterDatabase(payload);
+            string result = LoqrControllerHelper.AlterDatabase(payload);
 
             semaphoreSlim.Release();
 
-            return Content("Success", "application/json");
+            return Content(result, "application/json");
         }
     }
 }

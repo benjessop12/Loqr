@@ -21,6 +21,7 @@ $"https://{hostname}/api/Loqr"
 ```
 
 <sub>All requests below: one request per ip per one second</sub>
+
 <sub>If a request has [Auth] next to it, you must pass authentication parameters with the payload</sub>
 ### Get by id
 ```c#
@@ -60,7 +61,7 @@ $"https://{hostname}/api/Loqr/db_config"
 Upon first use, the user will need to create as user id and password to be able to use the authenticated requests above.
 Example url to create user details
 ```c#
-$"https://{hostname}/api/Admin/create_auth{id}{payload}"
+$"https://{hostname}/api/Admin/create_auth/{id}/{payload}"
 ```
 Example payload: auth=password
 

@@ -7,9 +7,9 @@ namespace Loqr.Database
 {
     public class DatabaseHandlers : QueryStrings
     {
-        public static string InsertNewValues(string base_cols, string base_vals)
+        public static string InsertNewValues(string table_name, string base_cols, string base_vals)
         {
-            return Execute(InsertToDB("base_db", base_cols, base_vals));
+            return Execute(InsertToDB(table_name, base_cols, base_vals));
         }
 
         public static void AlterDb(string column_name)
@@ -17,9 +17,9 @@ namespace Loqr.Database
             Execute(AlterDb("base_db", column_name));
         }
 
-        public static DataTable SelectById(long id)
+        public static DataTable SelectById(string table_name, long id)
         {
-            return MassRead(SelectFromDb("base_db", id));
+            return MassRead(SelectFromDb(table_name, id));
         }
 
         public static DataTable MassSelect()
@@ -35,6 +35,12 @@ namespace Loqr.Database
         public static void DeleteItem(string id)
         {
             Execute(DeleteItem("base_db", id));
+        }
+
+        public static int CountDb(string table_name)
+        {
+            DataTable dt = MassRead(MassSelectFromDb(table_name));
+            return dt.Rows.Count;
         }
 
         public static string GetColumnNames()

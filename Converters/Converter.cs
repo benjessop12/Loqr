@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Newtonsoft.Json;
+using Loqr.Models;
 
 namespace Loqr.Converters
 {
@@ -48,8 +49,8 @@ namespace Loqr.Converters
 
         public static string RemoveLast(string text, string character)
         {
-            if (text.Length < 1) return text;
-            return text.Remove(text.LastIndexOf(character), character.Length);
+            text = text.Length < 1 ? text : text.Remove(text.LastIndexOf(character), character.Length);
+            return text;
         }
     }
 }

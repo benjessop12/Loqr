@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Loqr
+namespace Loqr.Models
 {
     public class LoqrItem
     {

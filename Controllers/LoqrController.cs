@@ -12,13 +12,7 @@ namespace Loqr.Controllers
     [ApiController]
     public class LoqrController : ControllerBase
     {
-        private readonly LoqrContext _context;
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(initialCount: 1);
-
-        public LoqrController(LoqrContext context)
-        {
-            _context = context;
-        }
 
         // GET : api/Loqr
         [HttpGet]

@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Loqr.Models;
 
 namespace Loqr
 {
@@ -19,7 +17,6 @@ namespace Loqr
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<LoqrContext>(opt => opt.UseInMemoryDatabase("LoqrList"));
             services.AddControllers();
         }
 

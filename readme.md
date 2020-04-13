@@ -15,10 +15,12 @@ dotnet run
 With version one, all interaction with the database is done via URL requests.
 
 ### Get all
+<sub>One request per ip per two seconds</sub>
 ```c#
 $"https://{hostname}/api/Loqr"
 ```
 
+<sub>All requests below: one request per ip per one second</sub>
 ### Get by id:
 ```c#
 $"https://{hostname}/api/Loqr/{id}"

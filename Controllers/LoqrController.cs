@@ -1,6 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Loqr.Attributes;
 using Loqr.Models;
 using Loqr.Helpers;
 
@@ -20,6 +22,8 @@ namespace Loqr.Controllers
 
         // GET : api/Loqr
         [HttpGet]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 2)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<LoqrItem>> GetAll()
         {
             await semaphoreSlim.WaitAsync();
@@ -33,6 +37,8 @@ namespace Loqr.Controllers
 
         // GET : api/Loqr/5
         [HttpGet("{id}")]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<LoqrItem>> GetLoqrItem(string id)
         {
             await semaphoreSlim.WaitAsync();
@@ -51,6 +57,8 @@ namespace Loqr.Controllers
         
         // POST : api/Loqr/post/{id}/{payload}
         [HttpPost]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [Route("post/{id}/{payload}")]
         [AcceptVerbs("POST", "GET")]
         public async Task<IActionResult> PostLoqrItem([FromRoute]string id, string payload)
@@ -70,6 +78,8 @@ namespace Loqr.Controllers
 
         // POST : api/Loqr/edit/{id}/{payload}
         [HttpPost]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [Route("edit/{id}/{payload}")]
         [AcceptVerbs("POST", "GET")]
         public async Task<IActionResult> EditLoqrItem([FromRoute]string id, string payload)
@@ -85,6 +95,8 @@ namespace Loqr.Controllers
 
         // POST : api/Loqr/delete/{id}
         [HttpDelete]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [Route("delete/{id}")]
         [AcceptVerbs("POST", "GET")]
         public async Task<IActionResult> DeleteLoqrItem([FromRoute]string id)
@@ -100,6 +112,8 @@ namespace Loqr.Controllers
 
         // GET : api/Loqr/db_config
         [HttpGet("db_config")]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<IActionResult> GetConfig()
         {
             await semaphoreSlim.WaitAsync();
@@ -113,6 +127,8 @@ namespace Loqr.Controllers
 
         // POST : api/Loqr/db_config/{payload}
         [HttpPost]
+        [RequestRateLimit(Name = "Limit Request Number", Seconds = 1)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [Route("db_config/{payload}")]
         [AcceptVerbs("POST", "GET")]
         public async Task<IActionResult> EditDatabase([FromRoute]string payload)

@@ -11,19 +11,7 @@ namespace Loqr.Converters
     {
         public static string ConvertDataTabletoJson(DataTable dataTable)
         {
-            var loqrItem = new List<LoqrItem>();
-            foreach (DataRow row in dataTable.Rows)
-            {
-                long id = long.Parse(row["id"].ToString());
-                foreach(DataColumn col in dataTable.Columns)
-                {
-                    if (col.ToString() != "id")
-                    {
-                        loqrItem.Add(new LoqrItem(id, col.ToString(), row[col].ToString(), typeof(string)));
-                    }
-                }
-            }
-            var groupedItem = loqrItem
+            var groupedItem = DataTableToModelList(dataTable)
                 .GroupBy(i => i.Id)
                 .Select(grp => grp.ToList())
                 .ToList();
@@ -51,6 +39,23 @@ namespace Loqr.Converters
         {
             text = text.Length < 1 ? text : text.Remove(text.LastIndexOf(character), character.Length);
             return text;
+        }
+
+        private static List<LoqrItem> DataTableToModelList(DataTable dataTable)
+        {
+            List<LoqrItem> returnList = new List<LoqrItem>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                long id = long.Parse(row["id"].ToString());
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    if (col.ToString() != "id")
+                    {
+                        returnList.Add(new LoqrItem(id, col.ToString(), row[col].ToString(), typeof(string)));
+                    }
+                }
+            }
+            return returnList;
         }
     }
 }

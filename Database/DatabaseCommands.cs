@@ -9,13 +9,13 @@ namespace Loqr.Database
     public class LoqrDatabase
     {
         private const string root_db = "Loqr.db";
+        private static string[] base_db_columns = { "id INT PRIMARY KEY NOT NULL" };
+        private static string[] admin_db_columns = { "id INT PRIMARY KEY NOT NULL", "hash", "salt" };
 
         private static SQLiteConnection CreateConnection(string connection_string)
         {
             if (!File.Exists(connection_string))
             {
-                string[] base_db_columns = { "id INT PRIMARY KEY NOT NULL" };
-                string[] admin_db_columns = { "id INT PRIMARY KEY NOT NULL", "hash", "salt" };
                 SQLiteConnection.CreateFile(connection_string);
                 Execute(QueryStrings.CreateDB("base_db", base_db_columns));
                 Execute(QueryStrings.CreateDB("admin_db", admin_db_columns));

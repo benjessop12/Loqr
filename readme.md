@@ -1,5 +1,6 @@
 ﻿# Loqr Api
-This is a configurable ASP.NET api backed off of an synchronous database.
+This is a configurable ASP.NET api backed off of an synchronous database and custom database interaction wrapper.
+I wrote my own db handlers for fun.
 
 #### Version 0.1
 

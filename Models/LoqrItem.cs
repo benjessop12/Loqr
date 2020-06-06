@@ -4,12 +4,11 @@ namespace Loqr.Models
 {
     public class LoqrItem
     {
-        public LoqrItem(long id,  string name, string value, Type type)
+        public LoqrItem(long id,  string name, string value)
         {
             this.Id = id;
             this.Key = name;
             this.Value = value;
-            this.Type = type;
         }
 
         public long Id;
@@ -17,7 +16,5 @@ namespace Loqr.Models
         public string Key;
 
         public string Value;
-
-        public Type Type;
     }
 }

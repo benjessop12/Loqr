@@ -51,7 +51,7 @@ namespace Loqr.Converters
                 {
                     if (col.ToString() != "id")
                     {
-                        returnList.Add(new LoqrItem(id, col.ToString(), row[col].ToString(), typeof(string)));
+                        returnList.Add(new LoqrItem(id, col.ToString(), row[col].ToString()));
                     }
                 }
             }

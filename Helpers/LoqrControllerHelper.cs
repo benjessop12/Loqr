@@ -9,9 +9,12 @@ namespace Loqr.Helpers
 {
     public class LoqrControllerHelper : Converter
     {
+        private const string auth = "auth";
+        private const string base_db = "base_db";
+
         public static string ReturnResults(string id)
         {
-            return ConvertDataTabletoJson(DatabaseHandlers.SelectById("base_db", long.Parse(id)));
+            return ConvertDataTabletoJson(DatabaseHandlers.SelectById(base_db, long.Parse(id)));
         }
 
         public static string MassReturnResults()
@@ -28,7 +31,7 @@ namespace Loqr.Helpers
 
             foreach (KeyValuePair<string, string> key_val in base_vals)
             {
-                if (key_val.Key == "auth")
+                if (key_val.Key == auth)
                 {
                     string _id = key_val.Value.Substring(0, 1);
                     string _authToken = key_val.Value.Substring(1, key_val.Value.Length - 1);
@@ -55,7 +58,7 @@ namespace Loqr.Helpers
 
             string insert_keys = RemoveLast(Convert.ToString(keys), ",");
             string insert_vals = RemoveLast(Convert.ToString(vals), ",");
-            return DatabaseHandlers.InsertNewValues("base_db", insert_keys, insert_vals);
+            return DatabaseHandlers.InsertNewValues(base_db, insert_keys, insert_vals);
         }
 
         public static string EditProcessor(string id, string payload)

@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Linq;
+using System.Web;
 using Newtonsoft.Json;
 using Loqr.Models;
 
@@ -25,12 +26,10 @@ namespace Loqr.Converters
             {
                 payload_converter.Add("id", id);
             }
-            var elemns = payload.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach(string item in elemns)
+            NameValueCollection elemns = HttpUtility.ParseQueryString(payload);
+            foreach(string value in elemns)
             {
-                string key = item.Substring(0, item.LastIndexOf("="));
-                string value = item.Substring(item.LastIndexOf("=") + 1);
-                payload_converter.Add(key, value);
+                payload_converter.Add(value, elemns[value]);
             }
             return payload_converter;
         }
